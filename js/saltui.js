@@ -14,7 +14,6 @@
             formatters: '../formatters',
             models: '../models',
             shims: '../shims',
-            transforms: '../transforms',
             utils: '../utils',
             viewmodels: '../viewmodels',
 
