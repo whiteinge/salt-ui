@@ -14,7 +14,31 @@ define(function(require) {
         'lifecycle': {
             created: function(){
                 this.innerHTML = template;
-                drawtree.init(this); // TODO: move this
+                var chart = require('crystals/nested'),
+                    rentries = require('crystals/utils/rentries');
+
+
+                // Success!
+                //
+                // 1. make a version of send() that preserves context
+                // 2. partially apply sel and datum to send()
+                // 3. compose the partial
+
+                /**
+                Return a function that draws a crystal to the DOM
+
+                @return {Function}
+                **/
+                function get_draw(elem, data) {
+                    var sel = d3.select(elem),
+                        datum = f.applyLeft(f.sendWithCtx, sel, 'datum');
+
+                    var draw = f.compose(chart, datum, rentries);
+                    return f.applyFirst(draw, data);
+                }
+
+                var draw = get_draw(this, result);
+                draw();
             },
         },
     };
