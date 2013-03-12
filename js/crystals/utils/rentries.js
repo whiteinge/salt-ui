@@ -26,11 +26,17 @@ define(function() {
         if (obj !== Object(obj)) return obj;
 
         return Object.keys(obj).map(function(key) {
-            var val = obj[key];
-            return {
-                key: key,
-                value: typeof(val) === 'object' ? rentries(val) : val,
-            };
+            var val = obj[key],
+                ret = {key: key};
+
+            if (typeof(val) === 'object') {
+                ret.value = rentries(val);
+                ret.children = ret.value;
+            } else {
+                ret.value = val;
+            }
+
+            return ret;
         });
     }
 
