@@ -53,6 +53,7 @@ listener.
 **/
 requirejs([
     'conf/init',
+    'conf/logging',
 
     'document.register',
     'shims/dataset',
@@ -63,8 +64,11 @@ requirejs([
     'formatters/init',
     'models/init',
     'elements/init',
-    ], function(conf) {
+    ], function(conf, makeLogger) {
     'use strict';
 
+    var dev_mode = true;
+
     conf.routes.listen();
+    window.onerror = makeLogger(dev_mode);
 });
