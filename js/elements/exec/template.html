@@ -18,11 +18,8 @@
     <div class="input-append">
         <input type="text" class="input-medium"
             placeholder="arg=val"
-            data-each-arg="vm:arg"
-            data-input="arg.val">
-
-        <button class="btn" type="button"
-            data-on-click="vm.add_arg"><i class="icon-plus"></i></button>
+            data-each-arg="vm:add_arg < vm.arg"
+            data-input="arg">
     </div>
 
     <button type="submit" class="btn btn-primary"

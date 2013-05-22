@@ -19,18 +19,20 @@ define(function(require) {
         inprogress: false,
         errormsg: '',
 
-        submit: function(e) {
+        submit: function(e, model, view) {
             e.preventDefault();
 
-            var that = this;
+            var that = model;
 
-            this.inprogress = true;
-            this.errormsg = '';
+            that.inprogress = true;
+            that.errormsg = '';
+
+            console.debug('this', that, arguments);
 
             xhr('POST', '/login', {
-                username: this.username,
-                password: this.password,
-                eauth: this.eauth})
+                username: that.username,
+                password: that.password,
+                eauth: that.eauth})
             .then(
                 function(result) {
                     that.username = '';

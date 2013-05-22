@@ -21,7 +21,7 @@ define(function(require) {
         client: 'local',
         tgt: '*',
         fun: '',
-        arg: [{val:''}],
+        arg: [''],
 
         inprogress: false,
         result: null,
@@ -43,10 +43,12 @@ define(function(require) {
         Add items to the ``arg`` array
         **/
         add_arg: function(e) {
-            this.arg.push({val:''});
-            // TODO: replace this with a for-each-* binding that can reuse
-            // existing DOM elements
-            fireEvent(e.target, 'x-context-refresh');
+            console.debug('blah', JSON.stringify(this.arg));
+            if (this.arg[this.arg.length - 1] !== '') {
+                this.arg.push('');
+            }
+
+            return this.arg;
         },
 
         /**
