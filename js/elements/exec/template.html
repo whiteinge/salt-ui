@@ -1,29 +1,38 @@
 <x-context data-vm="exec">
 
 <form class="form-search" data-on-submit="vm.submit">
-    <select data-value="vm.client" class="input-small">
-        <option value="local">local</option>
-        <option value="wheel">wheel</option>
-        <option value="runner">runner</option>
-    </select>
+    <span style="position: relative; display: inline-block;">
+        <input type="text" class="input-xlarge cmd-hint"
+            disabled
+            autocomplete="off"
+            spellcheck="off"
+            style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background-attachment: scroll; background-clip: border-box; background-color: rgb(255, 255, 255); background-image: none; background-origin: padding-box; background-size: auto; background-position: 0% 0%; background-repeat: repeat repeat; color: #999;"
+            data-input="vm.hint">
 
-    <input type="text" class="input-mini"
-        placeholder="tgt"
-        data-input="vm.tgt">
+        <input type="text" class="input-xlarge"
+            placeholder="salt [opts] * mod.fun [arg] [arg=val]"
+            autocomplete="off"
+            spellcheck="off"
+            style="position: relative; vertical-align: top; background-color: transparent;"
+            data-input="vm.cmd"
+            data-on-keydown="vm.blah"
+            data-on-keypress="vm.blah"
+            data-on-cut="vm.blah"
+            data-on-paste="vm.blah"
+            >
 
-    <input type="text" class="input-medium"
-        placeholder="module.function"
-        data-input="vm.fun">
+        <span
+            style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"
+            data-show="vm.show_cmpl">
 
-    <div class="input-append">
-        <input type="text" class="input-medium"
-            placeholder="arg=val"
-            data-each-arg="vm:arg"
-            data-input="arg.val">
+            <ul>
+                <li data-each-s="vm.filter < vm.cmd">
+                    <span data-text=".s"></span>
+                </li>
+            </ul>
 
-        <button class="btn" type="button"
-            data-on-click="vm.add_arg"><i class="icon-plus"></i></button>
-    </div>
+        </span>
+    </span>
 
     <button type="submit" class="btn btn-primary"
             data-class-disabled="vm.inprogress"

@@ -16,16 +16,66 @@ define(function(require) {
         withInit = require('./mixins/withInit'),
         withAdvice = require('advice');
 
-    var vm = mixin([withInit, withAdvice], {
-        models: [f.sendWithCtx(minions, 'get_result')],
+    var lunr = require('lunr');
 
-        client: 'local',
-        tgt: '*',
-        fun: '',
-        arg: [{val:''}],
+    var specialKeyCodeMap = {
+        9: 'tab',
+        27: 'esc',
+        37: 'left',
+        39: 'right',
+        13: 'enter',
+        38: 'up',
+        40: 'down'
+    };
+
+    var vm = mixin([withInit, withAdvice], {
+        models: [
+            f.sendWithCtx(minions, 'get_result'),
+            f.sendWithCtx(sysdoc, 'get_result'),
+        ],
+
+        hint: '',
+        cmd: '',
 
         inprogress: false,
         result: null,
+
+        show_cmpl: false,
+
+        blah: function(e) {
+            var keyName = specialKeyCodeMap[e.which || e.keyCode];
+
+            if (this.cmd === '') this.hint = '';
+
+            switch (keyName) {
+                case 'tab':
+                    this.cmd = this.hint;
+                    this.hint = '';
+                    this.show_cmpl = false;
+                    break;
+                case 'esc':
+                    this.show_cmpl = false;
+                    break;
+                default:
+                    if (this.show_cmpl !== true) this.show_cmpl = true;
+                    break;
+            }
+
+        },
+
+        filter: function() {
+            var matches = this.index.search(this.cmd);
+
+            if (matches.length > 0) {
+                this.hint = matches[0].ref;
+            }
+
+            if (matches.length === 0) {
+                return Object.keys(sysdoc._cache.local).sort();
+            } else {
+                return f.pluckWith('ref')(matches);
+            }
+        },
 
         /**
         Return the form fields values as a lowstate data structure
@@ -100,6 +150,24 @@ define(function(require) {
             })
             .done();
         },
+    });
+
+    /**
+    Set up the search indexes
+    **/
+    vm.around('init', function(init) {
+        return init().then(function() {
+            vm.index = lunr(function() {
+                this.field('name', {boost: 10});
+                this.ref('name');
+            });
+
+            Object.keys(sysdoc._cache['local']).forEach(function(key) {
+                vm.index.add({'name': key, 'id': key});
+            });
+
+            return vm;
+        });
     });
 
     return vm;
