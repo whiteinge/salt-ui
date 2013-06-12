@@ -5,6 +5,7 @@ define(function(require) {
     'use strict';
 
     var minions = require('models/minions'),
+        sysdoc = require('models/sysdoc'),
         xhr = require('utils/xhr'),
         f = require('utils/func'),
         fireEvent = require('utils/events');

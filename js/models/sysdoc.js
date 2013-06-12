@@ -10,10 +10,18 @@ define(function(require) {
     var withCachedSync = require('./mixins/withCachedSync');
 
     function Sysdoc() {
-        this.lowstate = [{client: 'runner', fun: 'doc.execution'}];
+        this.lowstate = [
+            {client: 'runner', fun: 'doc.execution'},
+            {client: 'runner', fun: 'doc.runner'},
+            {client: 'runner', fun: 'doc.wheel'},
+        ];
 
         this.update = function(result) {
-            return this.format_ret(result['return'][0]);
+            return {
+                local: this.format_ret(result['return'][0]),
+                runner: this.format_ret(result['return'][1]),
+                wheel: this.format_ret(result['return'][2]),
+            };
         };
 
         /**

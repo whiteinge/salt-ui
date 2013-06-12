@@ -18,7 +18,7 @@ define(function(require) {
         Return a list of all module names
         **/
         modules: function() {
-            return Object.keys(sysdoc._cache);
+            return Object.keys(sysdoc._cache.local);
         },
 
         /**
@@ -27,8 +27,8 @@ define(function(require) {
         funs: function() {
             var i = [];
 
-            Object.keys(sysdoc._cache).forEach(function(key) {
-                Object.keys(sysdoc._cache[key]).map(function(val) {
+            Object.keys(sysdoc._cache.local).forEach(function(key) {
+                Object.keys(sysdoc._cache.local[key]).map(function(val) {
                     i.push(key +'.'+ val);
                 });
             });
