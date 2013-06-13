@@ -24,6 +24,7 @@
         // shim non-AMD libs
         shim: {
             'd3': {exports: 'd3'},
+            'lunr': {exports: 'lunr'},
             'path': {exports: 'Path'},
         },
         // DEBUG: bust caches
