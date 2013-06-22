@@ -39,3 +39,6 @@
 
 --url "https://raw.github.com/pimterry/loglevel/0.3.0/dist/loglevel.js"
 -O
+
+--url "https://raw.github.com/raimohanska/bacon.js/0.4.9/dist/Bacon.js"
+-O
