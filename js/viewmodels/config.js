@@ -4,7 +4,8 @@ Description
 define(function(require) {
     'use strict';
 
-    var sysdoc = require('models/sysdoc'),
+    var config = require('models/config'),
+        sysdoc = require('models/sysdoc'),
         f = require('utils/func');
 
     var mixin = require('utils/mixin'),
@@ -12,7 +13,10 @@ define(function(require) {
         withAdvice = require('advice');
 
     var vm = mixin([withInit, withAdvice], {
-        models: [f.sendWithCtx(sysdoc, 'get_result')],
+        models: [
+            f.sendWithCtx(config, 'get_result'),
+            f.sendWithCtx(sysdoc, 'get_result'),
+        ],
 
         /**
         Return a list of all module names

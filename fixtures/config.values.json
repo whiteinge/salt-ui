@@ -1,0 +1,121 @@
+{
+    "auth_mode": 1, 
+    "auto_accept": false, 
+    "cachedir": "/home/shouse/tmp/venvs/salt/var/cache/salt/master", 
+    "client_acl": {}, 
+    "client_acl_blacklist": {}, 
+    "cluster_masters": [], 
+    "cluster_mode": "paranoid", 
+    "conf_file": "/home/shouse/tmp/venvs/salt/etc/salt/master", 
+    "cython_enable": false, 
+    "default_include": "master.d/*.conf", 
+    "ext_job_cache": "", 
+    "ext_pillar": [], 
+    "extension_modules": "/home/shouse/tmp/venvs/salt/var/cache/salt/master/extmods", 
+    "external_auth": {
+        "pam": {
+            "shouse": [
+                "@wheel", 
+                "cmd.*", 
+                "disk.*", 
+                "file.*", 
+                "grains.*", 
+                "key.*", 
+                "state.*", 
+                "status.*", 
+                "sys.*", 
+                "test.*"
+            ]
+        }
+    }, 
+    "external_nodes": "", 
+    "failhard": false, 
+    "file_buffer_size": 1048576, 
+    "file_ignore_glob": null, 
+    "file_ignore_regex": null, 
+    "file_roots": {
+        "base": [
+            "/home/shouse/tmp/venvs/salt/srv/salt"
+        ]
+    }, 
+    "fileserver_backend": [
+        "roots"
+    ], 
+    "gitfs_remotes": [], 
+    "hash_type": "md5", 
+    "interface": "0.0.0.0", 
+    "ipv6": false, 
+    "job_cache": true, 
+    "keep_jobs": 24, 
+    "key_logfile": "/home/shouse/tmp/venvs/salt/var/log/salt/key", 
+    "log_datefmt": "%H:%M:%S", 
+    "log_datefmt_logfile": "%Y-%m-%d %H:%M:%S", 
+    "log_file": "/home/shouse/tmp/venvs/salt/var/log/salt/master", 
+    "log_fmt_console": "[%(levelname)-8s] %(message)s", 
+    "log_fmt_logfile": "%(asctime)s,%(msecs)03.0f [%(name)-17s][%(levelname)-8s] %(message)s", 
+    "log_granular_levels": {}, 
+    "log_level": null, 
+    "log_level_logfile": null, 
+    "loop_interval": 60, 
+    "master_ext_job_cache": "", 
+    "master_roots": {
+        "base": [
+            "/srv/salt-master"
+        ]
+    }, 
+    "master_tops": {}, 
+    "max_open_files": 100000, 
+    "mine_functions": {
+        "network.interfaces": []
+    }, 
+    "mine_interval": 5, 
+    "minion_data_cache": true, 
+    "nodegroups": {}, 
+    "open_mode": true, 
+    "order_masters": false, 
+    "outputter_dirs": [], 
+    "peer": {}, 
+    "permissive_pki_access": false, 
+    "pidfile": "/home/shouse/tmp/venvs/salt/var/run/salt-master.pid", 
+    "pillar_opts": true, 
+    "pillar_roots": {
+        "base": [
+            "/home/shouse/tmp/venvs/salt/srv/pillar"
+        ]
+    }, 
+    "pillar_version": 2, 
+    "pki_dir": "/home/shouse/tmp/venvs/salt/etc/salt/pki/master", 
+    "publish_port": "4505", 
+    "publish_session": 86400, 
+    "range_server": "range:80", 
+    "reactor": [], 
+    "renderer": "yaml_jinja", 
+    "rest_cherrypy": {
+        "debug": true, 
+        "port": 8000, 
+        "ssl_crt": "/home/shouse/tmp/venvs/salt/etc/pki/tls/certs/localhost.crt", 
+        "ssl_key": "/home/shouse/tmp/venvs/salt/etc/pki/tls/certs/localhost.key", 
+        "static": "/home/shouse/src/salt/salt-ui"
+    }, 
+    "ret_port": "4506", 
+    "root_dir": "/home/shouse/tmp/venvs/salt", 
+    "runner_dirs": [], 
+    "search": "", 
+    "search_index_interval": 3600, 
+    "serial": "msgpack", 
+    "sock_dir": "/home/shouse/tmp/venvs/salt/var/run/salt/master", 
+    "state_output": "terse", 
+    "state_top": "top.sls", 
+    "state_verbose": true, 
+    "syndic_master": "", 
+    "timeout": 5, 
+    "token_expire": 43200, 
+    "user": "shouse", 
+    "verify_env": true, 
+    "win_gitrepos": [
+        "https://github.com/saltstack/salt-winrepo.git"
+    ], 
+    "win_repo": "/srv/salt/win/repo", 
+    "win_repo_mastercachefile": "/srv/salt/win/repo/winrepo.p", 
+    "worker_threads": 1
+}
